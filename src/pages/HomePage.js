@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const categories = [
-  { name: "Men", image: "/images/men.jpg" },
-  { name: "Women", image: "/images/women.jpg" },
-  { name: "Kids", image: "/images/kids.jpg" },
+  { name: "Men", image: "/images/men.jpg", path: "/men" },
+  { name: "Women", image: "/images/women.jpg", path: "/women" },
+  { name: "Kids", image: "/images/kids.jpg", path: "/kids" },
 ];
 
 export default function HomePage() {
@@ -15,19 +18,19 @@ export default function HomePage() {
 
       <main className="p-4 grid md:grid-cols-3 gap-6">
         {categories.map((cat) => (
-          <div key={cat.name} className="rounded-2xl shadow-md overflow-hidden">
+          <Card key={cat.name} className="rounded-2xl shadow-md">
             <img
               src={cat.image}
               alt={cat.name}
-              className="w-full h-64 object-cover"
+              className="w-full h-64 object-cover rounded-t-2xl"
             />
-            <div className="p-4 text-center">
+            <CardContent className="p-4 text-center">
               <h2 className="text-xl font-semibold mb-2">{cat.name}</h2>
-              <button className="w-full bg-black text-white py-2 rounded-md">
-                Shop Now
-              </button>
-            </div>
-          </div>
+              <Link to={cat.path}>
+                <Button className="w-full">Shop Now</Button>
+              </Link>
+            </CardContent>
+          </Card>
         ))}
       </main>
 
